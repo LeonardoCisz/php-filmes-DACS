@@ -52,13 +52,13 @@
                             echo("Connection failed: " . $conn->connect_error);
                         } 
 
-                        $sql = "SELECT * FROM filmes";
+                        $sql = " select f.nome, f.descricao, c.nome as nome2 from filmes f inner join categorias c on(f.categoria_id = c.id);";
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 echo '<tr>';
-                                echo "<td>" . $row["nome"]. "</td><td>" . $row["descricao"]. "</td><td>" . $row["categoria_id"]. "</td>";
+                                echo "<td>" . $row["nome"]. "</td><td>" . $row["descricao"]. "</td><td>" . $row["nome2"]. "</td>";
                                 echo '</tr>';
                             }
                         } else {
